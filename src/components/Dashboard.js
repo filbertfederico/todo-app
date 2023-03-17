@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, db, logout } from "../firebase";
+import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import "./dashboard.css";
+import "./Dashboard.css";
 
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
@@ -20,6 +21,7 @@ function Dashboard() {
       alert("An error occured while fetching user data");
     }
   };
+
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
@@ -38,5 +40,4 @@ function Dashboard() {
      </div>
   );
 }
-
 export default Dashboard;
